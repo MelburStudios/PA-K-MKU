@@ -10,23 +10,23 @@ The system is designed to reduce manual paperwork, improve record accuracy, and 
 •	Improve administrative efficiency and reporting<br>
 •	Provide role-based access for administrators and club officials<br><br>
 *🧩 Core Features*<br>
-•	Member Management<br>
-o  	Digital member registration and profiles<br>
-o  	Status tracking (active, completed, inactive)<br>
-o  	Participant history and engagement records<br><br>
-• Role-Based Access Control<br>
+•	MEMBER MANAGEMENT<br>
+o  Digital member registration and profiles<br>
+o  Status tracking (active, completed, inactive)<br>
+o  Participant history and engagement records<br><br>
+• ROLE-BASED ACCESS CONTROL<br>
 o	Administrator dashboard<br>
 o	Club officials / coordinators<br>
 o	Secure authentication and authorization<br><br>
-•	Activity & Event Management<br>
+•	ACTIVITY & EVENT MANAGEMENT<br>
 o	Create and manage club activities and events<br>
 o	Track attendance and participation<br>
 o	Assign activities to specific award phases<br><br>
-•	Progress Tracking<br>
+•	PROGRESS TRACKING<br>
 o	Monitor participant progress across programme stages<br>
 o	Activity completion tracking<br>
 o	Historical progress records<br><br>
-•	Reporting & Administration<br>
+•	REPORTING & ADMINISTRATION<br>
 o	Member statistics and summaries<br>
 o	Activity and participation reports<br>
 o	Centralized data for decision-making<br><br>
