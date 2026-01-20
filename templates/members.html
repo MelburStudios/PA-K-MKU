@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members - PA-K System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>👥 Club Members</h1>
+            <p>President's Award Club - Mount Kenya University</p>
+        </header>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('members') }}" class="nav-active">Members</a>
+            <a href="{{ url_for('add_member') }}">Add Member</a>
+            <a href="{{ url_for('finances') }}">Finances</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="section-header">
+            <h2>All Members ({{ members|length }})</h2>
+            <a href="{{ url_for('add_member') }}" class="btn btn-primary">Add New Member</a>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Reg Number</th>
+                        <th>Course</th>
+                        <th>Award Level</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                        <th>Fee Paid</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                    <tr>
+                        <td>{{ member.full_name }}</td>
+                        <td>{{ member.reg_number }}</td>
+                        <td>{{ member.course }}</td>
+                        <td><span class="badge badge-{{ member.award_level|lower }}">{{ member.award_level }}</span></td>
+                        <td><span class="badge badge-{{ member.status|lower }}">{{ member.status }}</span></td>
+                        <td>
+                            {% set completed = [member.service_completed, member.physical_completed, member.skill_completed, member.journey_completed].count(true) %}
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: {{ (completed/4)*100 }}%"></div>
+                                <span class="progress-text">{{ completed }}/4</span>
+                            </div>
+                        </td>
+                        <td>
+                            {% if member.registration_fee_paid %}
+                                <span class="badge badge-success">PAID</span>
+                            {% else %}
+                                <span class="badge badge-danger">PENDING</span>
+                            {% endif %}
+                        </td>
+                        <td class="actions">
+                            <a href="{{ url_for('edit_member', member_id=member.id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{{ url_for('student_report', member_id=member.id) }}" class="btn btn-sm btn-info">Report</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>Developed by <a href="https://studios.melbur.co.ke" target="_blank">Melbur Studios</a></p>
+        </footer>
+    </div>
+</body>
+</html>

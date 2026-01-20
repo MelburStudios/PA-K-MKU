@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PA-K Dashboard - Mount Kenya University</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏆 President's Award Club</h1>
+            <p>Mount Kenya University - Management System</p>
+        </header>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}" class="nav-active">Dashboard</a>
+            <a href="{{ url_for('members') }}">Members</a>
+            <a href="{{ url_for('add_member') }}">Add Member</a>
+            <a href="{{ url_for('finances') }}">Finances</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+        </nav>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Members</h3>
+                <div class="stat-number">{{ total_members }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Students</h3>
+                <div class="stat-number">{{ total_students }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Alumni</h3>
+                <div class="stat-number">{{ total_alumni }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Award Eligible</h3>
+                <div class="stat-number">{{ eligible_students }}</div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="action-buttons">
+                <a href="{{ url_for('add_member') }}" class="btn btn-primary">➕ Add New Member</a>
+                <a href="{{ url_for('members') }}" class="btn btn-secondary">👥 View All Members</a>
+                <a href="{{ url_for('reports') }}" class="btn btn-success">📊 Generate Reports</a>
+                <a href="{{ url_for('finances') }}" class="btn btn-warning">💰 Manage Finances</a>
+            </div>
+        </div>
+
+        <div class="financial-overview">
+            <h2>Financial Overview</h2>
+            <p><strong>Current Registration Fee:</strong> KSh {{ "%.2f"|format(fee_setting.registration_fee) }}</p>
+        </div>
+
+        <footer>
+            <p>Developed by <a href="https://studios.melbur.co.ke" target="_blank">Melbur Studios</a></p>
+        </footer>
+    </div>
+</body>
+</html>

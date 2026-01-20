@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finances - PA-K System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Finances</h1>
+            <p>President's Award Club - Mount Kenya University</p>
+        </header>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('members') }}">Members</a>
+            <a href="{{ url_for('add_member') }}">Add Member</a>
+            <a href="{{ url_for('finances') }}" class="nav-active">Finances</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Members</h3>
+                <div class="stat-number">{{ total_members }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Paid Members</h3>
+                <div class="stat-number">{{ paid_members }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Collected</h3>
+                <div class="stat-number">KSh {{ "%.2f"|format(total_collected) }}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pending Collection</h3>
+                <div class="stat-number">KSh {{ "%.2f"|format(pending_collection) }}</div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>Update Registration Fee</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="registration_fee">Registration Fee Amount (KSh)</label>
+                    <input type="number" id="registration_fee" name="registration_fee" value="{{ fee_setting.registration_fee }}" step="0.01" min="0" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update Fee</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container" style="margin-top: 2rem;">
+            <h2>Payment Status Overview</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Payment Status</th>
+                        <th>Number of Members</th>
+                        <th>Amount</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-success">PAID</span></td>
+                        <td>{{ paid_members }}</td>
+                        <td>KSh {{ "%.2f"|format(total_collected) }}</td>
+                        <td>{{ "%.1f"|format((paid_members/total_members)*100) if total_members > 0 else 0 }}%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-danger">PENDING</span></td>
+                        <td>{{ total_members - paid_members }}</td>
+                        <td>KSh {{ "%.2f"|format(pending_collection) }}</td>
+                        <td>{{ "%.1f"|format(((total_members - paid_members)/total_members)*100) if total_members > 0 else 0 }}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>Developed by <a href="https://studios.melbur.co.ke" target="_blank">Melbur Studios</a></p>
+        </footer>
+    </div>
+</body>
+</html>

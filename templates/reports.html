@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - PA-K System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Reports</h1>
+            <p>President's Award Club - Mount Kenya University</p>
+        </header>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('members') }}">Members</a>
+            <a href="{{ url_for('add_member') }}">Add Member</a>
+            <a href="{{ url_for('finances') }}">Finances</a>
+            <a href="{{ url_for('reports') }}" class="nav-active">Reports</a>
+        </nav>
+
+        <div class="section-header">
+            <h2>Award Eligible Students ({{ eligible_students|length }})</h2>
+        </div>
+
+        {% if eligible_students %}
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Reg Number</th>
+                        <th>Course</th>
+                        <th>Award Level</th>
+                        <th>Date Joined</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in eligible_students %}
+                    <tr>
+                        <td>{{ member.full_name }}</td>
+                        <td>{{ member.reg_number }}</td>
+                        <td>{{ member.course }}</td>
+                        <td><span class="badge badge-{{ member.award_level|lower }}">{{ member.award_level }}</span></td>
+                        <td>{{ member.date_joined.strftime('%Y-%m-%d') }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for('student_report', member_id=member.id) }}" class="btn btn-sm btn-info">Download Report</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="flash">
+            No eligible students found. Students must complete all 4 sections (Service, Physical Recreation, Skill Development, Adventurous Journey) to be eligible for awards.
+        </div>
+        {% endif %}
+
+        <div class="section-header" style="margin-top: 2rem;">
+            <h2>All Members Reports</h2>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Reg Number</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                        <th>Fee Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in all_members %}
+                    <tr>
+                        <td>{{ member.full_name }}</td>
+                        <td>{{ member.reg_number }}</td>
+                        <td><span class="badge badge-{{ member.status|lower }}">{{ member.status }}</span></td>
+                        <td>
+                            {% set completed = [member.service_completed, member.physical_completed, member.skill_completed, member.journey_completed].count(true) %}
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: {{ (completed/4)*100 }}%"></div>
+                                <span class="progress-text">{{ completed }}/4</span>
+                            </div>
+                        </td>
+                        <td>
+                            {% if member.registration_fee_paid %}
+                                <span class="badge badge-success">PAID</span>
+                            {% else %}
+                                <span class="badge badge-danger">PENDING</span>
+                            {% endif %}
+                        </td>
+                        <td class="actions">
+                            <a href="{{ url_for('student_report', member_id=member.id) }}" class="btn btn-sm btn-info">Download Report</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="quick-actions" style="margin-top: 2rem;">
+            <h2>Quick Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Members</h3>
+                    <div class="stat-number">{{ all_members|length }}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Students</h3>
+                    <div class="stat-number">{{ all_members|selectattr("status", "equalto", "Student")|list|length }}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Alumni</h3>
+                    <div class="stat-number">{{ all_members|selectattr("status", "equalto", "Alumni")|list|length }}</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Completion Rate</h3>
+                    <div class="stat-number">
+                        {% set total_completed = all_members|selectattr("service_completed")|selectattr("physical_completed")|selectattr("skill_completed")|selectattr("journey_completed")|list|length %}
+                        {{ "%.1f"|format((total_completed/all_members|length)*100) if all_members|length > 0 else 0 }}%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Developed by <a href="https://studios.melbur.co.ke" target="_blank">Melbur Studios</a></p>
+        </footer>
+    </div>
+</body>
+</html>

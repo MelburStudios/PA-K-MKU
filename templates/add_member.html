@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member - PA-K System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>➕ Add New Member</h1>
+            <p>President's Award Club - Mount Kenya University</p>
+        </header>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('members') }}">Members</a>
+            <a href="{{ url_for('add_member') }}" class="nav-active">Add Member</a>
+            <a href="{{ url_for('finances') }}">Finances</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+        </nav>
+
+        <div class="form-container">
+            <form method="POST" class="member-form">
+                <h2>Personal Information</h2>
+                
+                <div class="form-group">
+                    <label for="full_name">Full Name *</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reg_number">Registration Number *</label>
+                        <input type="text" id="reg_number" name="reg_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <input type="text" id="course" name="course">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="year">Year of Study</label>
+                        <select id="year" name="year">
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <option value="5th Year">5th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="award_level">Award Level</label>
+                        <select id="award_level" name="award_level">
+                            <option value="Bronze">Bronze</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Gold">Gold</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="Student">Student</option>
+                            <option value="Alumni">Alumni</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" name="registration_fee_paid">
+                            Registration Fee Paid (KSh {{ "%.2f"|format(fee_setting.registration_fee) }})
+                        </label>
+                    </div>
+                </div>
+
+                <h2>Initial Progress</h2>
+                <div class="progress-checkboxes">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="service_completed">
+                        Service Completed
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="physical_completed">
+                        Physical Recreation Completed
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="skill_completed">
+                        Skill Development Completed
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="journey_completed">
+                        Adventurous Journey Completed
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="admin_remarks">Admin Remarks</label>
+                    <textarea id="admin_remarks" name="admin_remarks" rows="4" placeholder="Any additional notes or remarks..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Add Member</button>
+                    <a href="{{ url_for('members') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+        <footer>
+            <p>Developed by <a href="https://studios.melbur.co.ke" target="_blank">Melbur Studios</a></p>
+        </footer>
+    </div>
+</body>
+</html>
