@@ -11,10 +11,10 @@ The system is designed to reduce manual paperwork, improve record accuracy, and 
 •	Provide role-based access for administrators and club officials<br><br>
 *🧩 Core Features*<br>
 •	Member Management<br>
-o	Digital member registration and profiles<br>
-o	Status tracking (active, completed, inactive)<br>
-o	Participant history and engagement records<br>
-•	Role-Based Access Control<br>
+o  	Digital member registration and profiles<br>
+o  	Status tracking (active, completed, inactive)<br>
+o  	Participant history and engagement records<br>
+• Role-Based Access Control<br>
 o	Administrator dashboard<br>
 o	Club officials / coordinators<br>
 o	Secure authentication and authorization<br>
