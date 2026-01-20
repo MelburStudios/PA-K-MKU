@@ -1,15 +1,15 @@
 PA-K MKU
 President’s Award Club Management System – Mount Kenya University
-📌 Overview
+*📌 Overview*
 PA-K MKU is a web-based management system developed to support the operations of the Mount Kenya University President’s Award Club. The platform centralizes member management, activity coordination, progress tracking, and administrative oversight for the President’s Award programme within the university.
 The system is designed to reduce manual paperwork, improve record accuracy, and provide a structured digital workflow for managing participants, club officials, and award activities across different programme phases.
-🎯 Objectives
+*🎯 Objectives*
 •	Digitize membership registration and management
 •	Track participant progress across President’s Award phases
 •	Centralize activities, events, and programme records
 •	Improve administrative efficiency and reporting
 •	Provide role-based access for administrators and club officials
-🧩 Core Features
+*🧩 Core Features*
 •	Member Management
 o	Digital member registration and profiles
 o	Status tracking (active, completed, inactive)
@@ -30,36 +30,36 @@ o	Historical progress records
 o	Member statistics and summaries
 o	Activity and participation reports
 o	Centralized data for decision-making
-🛠️ Technology Stack
+*🛠️ Technology Stack*
 •	Frontend: React / Next.js
 •	Backend: Node.js (Express)
 •	Database: MongoDB
 •	Authentication: JWT-based authentication
 •	Hosting: VPS / Cloud deployment
-🔐 Security & Data Handling
+*🔐 Security & Data Handling*
 •	Role-based access control
 •	Secure authentication mechanisms
 •	Protection of sensitive member information
 •	Best practices followed for data storage and access
-📷 Screenshots
-Screenshots and UI previews will be added as the project progresses.
-🗺️ Roadmap
-•	Advanced reporting and analytics
-•	Alumni module
-•	Document uploads and verification
-•	Email/SMS notifications
-•	Mobile-first UI enhancements
-*🏫 Intended Use*
-This system is intended for academic and club management purposes and is tailored to support university-based President’s Award programmes. Customizations can be made to suit other institutions or award-based organizations.
-*📄 License*
-This project is licensed for educational and institutional use.
-License terms may be updated as the project evolves.
-*👨‍💻 Author & Credits*
-Developed at Melbur Studios
-Website: https://studios.melbur.co.ke  
-Project Lead: Benson Muya
-Melbur Studios is responsible for all updates, branding work, version management, technical maintenance, and refinement of the program.
-*Visibility Window*
-This repository is publicly accessible for review between:
-01 January 2026 → 30 April 2026
-After this period, the repository may be returned to private status for intellectual property protection.
+*📷 Screenshots*
+Screenshots and UI previews will be added as the project progresses.<br><br>
+*🗺️ Roadmap*<br>
+•	Advanced reporting and analytics<br>
+•	Alumni module<br>
+•	Document uploads and verification<br>
+•	Email/SMS notifications<br>
+•	Mobile-first UI enhancements<br><br>
+*🏫 Intended Use*<br>
+This system is intended for academic and club management purposes and is tailored to support university-based President’s Award programmes. Customizations can be made to suit other institutions or award-based organizations.<br><br>
+*📄 License*<br>
+This project is licensed for educational and institutional use.<br>
+License terms may be updated as the project evolves.<br><br>
+*👨‍💻 Author & Credits*<br>
+Developed at Melbur Studios<br>
+Website: https://studios.melbur.co.ke <br>
+Project Lead: Benson Muya<br>
+Melbur Studios is responsible for all updates, branding work, version management, technical maintenance, and refinement of the program.<br><br>
+*Visibility Window*<br>
+This repository is publicly accessible for review between:<br>
+01 January 2026 → 30 April 2026<br>
+After this period, the repository may be returned to private status for intellectual property protection.<br>
