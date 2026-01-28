@@ -1,5 +1,5 @@
 # 💻PA-K MKU<br>
-President’s Award Club Management System – Mount Kenya University<br><br>
+President’s Award (Duke of Edinburgh International Award) Club Management System for Mount Kenya University<br><br>
 *📌 Overview*<br>
 PA-K MKU is a web-based management system developed to support the operations of the Mount Kenya University President’s Award Club. The platform centralizes member management, activity coordination, progress tracking, and administrative oversight for the President’s Award programme within the university.<br>
 The system is designed to reduce manual paperwork, improve record accuracy, and provide a structured digital workflow for managing participants, club officials, and award activities across different programme phases.<br><br>
